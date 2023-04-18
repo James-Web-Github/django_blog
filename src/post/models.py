@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from ckeditor_uploader.fields import RichTextUploadingField
+from django.urls import reverse
+
 # Create your models here.
 User = get_user_model()
 class Author(models.Model):
@@ -8,7 +10,7 @@ class Author(models.Model):
     user_profile = models.ImageField()
 
     def __str__(self) -> str:
-        return self.user.get_username
+        return self.user.username
     
 class Category(models.Model):
     title = models.CharField(max_length=20)
@@ -20,8 +22,9 @@ class Post(models.Model):
     title  = models.CharField(max_length=50)
     over_view = models.TextField()
     # over_view = RichTextUploadingField()
-    timestamp = models.TimeField(auto_now_add=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
     comment_count = models.IntegerField(default=0)
+    view_count = models.IntegerField(default=0)
     author = models.ForeignKey(Author,on_delete=models.CASCADE)
     thumbnail = models.ImageField()
     categories = models.ManyToManyField(Category)
@@ -29,3 +32,7 @@ class Post(models.Model):
 
     def __str__(self) -> str:
         return self.title
+    
+    def get_absolute_url(self):
+        return reverse("post-detail", kwargs={"id": self.id})
+     

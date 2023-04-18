@@ -19,13 +19,14 @@ from django.urls import path,include
 from django.conf import settings
 from test_api.views import test_api,clear_test_api
 from django.conf.urls.static import static
-from post.views import index,blog,post
+from post.views import index,blog,post,search
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index),
-    path('blog/', blog),
-    path('post/', post),
+    path('blog/', blog,name='post-list'),
+    path('post/<id>/', post,name='post-detail'),
     path('test_api/', test_api,name="testapi1"),
+    path('search/', search,name="search"),
     path('clear_test_api/', clear_test_api,name="clear_testapi1"),
     path('ckeditor/', include('ckeditor_uploader.urls'))
 ]
