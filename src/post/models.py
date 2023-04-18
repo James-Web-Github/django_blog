@@ -21,7 +21,7 @@ class Post(models.Model):
 
     title  = models.CharField(max_length=50)
     over_view = models.TextField()
-    # over_view = RichTextUploadingField()
+    content = RichTextUploadingField()
     timestamp = models.DateTimeField(auto_now_add=True)
     comment_count = models.IntegerField(default=0)
     view_count = models.IntegerField(default=0)
