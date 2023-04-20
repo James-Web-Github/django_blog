@@ -1,21 +1,23 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom py-3">
-    <div class="container py-1"><a class="navbar-brand text-sm fw-bold text-dark" href="/">We make better life</a>
+    <div class="container py-1"><a class="navbar-brand text-sm fw-bold text-dark active" href="/">We make better life</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
-          <li class="nav-item"><a class="nav-link " href="/">Home</a>
+          <li class="nav-item"><a class="nav-link active" href="/">Home</a>
           </li>
-          <li class="nav-item"><a class="nav-link active " href="/blog">Blog</a>
-          </li>
-          <li class="nav-item"><a class="nav-link " href="/post">Post</a>
-          </li>
-          <li class="nav-item"><a class="nav-link " href="#">Contact</a>
+          {% comment %} <li class="nav-item"><a class="nav-link  active" href="/blog">Blog</a> {% endcomment %}
+        </li>
+          {% comment %} <li class="nav-item"><a class="nav-link " href="/post">Post</a> {% endcomment %}
+            <li class="nav-item"><a class="nav-link active" href="#">Contact</a>
+            </li>
+            {% if request.user.is_authenticated %}
+            <li class="nav-item"><a class="nav-link active" href="/accounts/logout">Logout</a>
+            {% else %}
+            <li class="nav-item"><a class="nav-link active" href="/accounts/login">Signin</a>
+            {% endif %}
+
           </li>
           <li class="nav-item mt-2 mt-lg-0">
-            <ul class="list-inline d-flex align-items-center">
-              <li class="list-inline-item mx-lg-2 px-2 border-start border-end"><a class="search-btn nav-link small py-0 text-dark" href="#"><i class="fas fa-search"></i></a></li>
-              {% comment %} <li class="list-inline-item d-flex align-items-end small"><a class="text-dark" href="#">EN</a><span class="underscore mb-1"></span><a class="text-gray-500" href="#">ES</a></li> {% endcomment %}
-            </ul>
           </li>
         </ul>
       </div>
